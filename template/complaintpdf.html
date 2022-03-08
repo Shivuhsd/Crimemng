@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+       
+        <h1 align="center">Complaint Copy</h1>
+        <hr>
+        <br>
+    </div>
+    <div>
+        <h1>Compaint ID: {{profile.id}}</h1>
+        <h1><b>From:</b></h1>
+        <div style="margin-left: 50px;">
+            <h1 >{{profile.firstname}} {{profile.lastname}} <br> {{profile.address}} <br> {{profile.pincode}} <br> {{profile.phone}}</h1>
+            <h1></h1>
+        </div>
+
+        <br>
+        <h1>To:</h1>
+        <div style="margin-left: 50px;">
+            <h1>Crime Management System <br> Malekote, Tumakuru <br> 572-105 <br> 080-122-787878</h1>
+        </div>
+        <br><br><br>
+        <div style="margin-left: 50px;">
+            <h1>Subject: {{profile.subject}}</h1>
+        </div>
+
+        <div style="margin-left: 50px;">
+            <h1>Dear Sir/Madam,</h1>
+            <h1 style="margin-left: 30px;">
+                {{profile.description}}
+            </h1>
+        </div>
+    </div>
+    <br><br>
+    <br>
+    <div>
+        <pre><h1>Date: {{profile.created}}                                  Your Faithfully
+Place: {{profile.place}}                                                  {{profile.firstname}}{{profile.lastname}}</h1></pre>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div>
+        <h4>
+            The Information That I have Provided Above is True By All Means And I want You To Take Legal Action About This Complainer, If Any Information Which I have Given is False I will Face The Consequences and I only Solemonly Responsible For That Else No One....
+        </h4>
+        <br>
+        <h3>&copy; Crime Management System</h3>
+    </div>
+</body>
+</html>

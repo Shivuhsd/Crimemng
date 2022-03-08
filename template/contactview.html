@@ -1,0 +1,22 @@
+{% extends 'staffdashboard.html' %} {% load static %} {% block dash %}{% block page %}Contacted{% endblock %}
+
+<table class="table p-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Submitted On</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for r in form %}
+      <tr>
+        <th scope="row">{{r.id}}</th>
+        <td>{{r.name}}</td>
+        <td>{{r.submit}}</td>
+        <td><a href="{% url 'viewcontact' r.id %}"><button class="btn btn-primary">View</button></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>{% endblock %}

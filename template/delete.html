@@ -1,0 +1,34 @@
+{% extends 'index.html' %} {% block content %}
+
+<section class="card-group p-3 align-items-center">
+  <div class="container d-sm-flex">
+    <div class="container"></div>
+    <div class="container mt-5">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Are You Sure To Delete "{{obj}}"..?</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            This Action Cannot Be Undone..!!
+          </h6>
+          <div class="d-flex ms-5">
+            <form action="" method="POST" class="ms-md-5">
+              {% csrf_token %}
+
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+            <button class="btn btn-warning ms-3">
+              <a
+                href="{{request.META.HTTP_REFERER}}"
+                class="card-link text-decoration-none text-white"
+                >Go Back</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container"></div>
+  </div>
+</section>
+
+{% endblock %} {% block footer %} {% endblock %}

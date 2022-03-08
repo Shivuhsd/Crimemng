@@ -1,0 +1,32 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+
+<section class="bg-primary">
+  <div class="container">
+    <div class="text-center p-5 text-light">
+      <p class="lead">
+        Complaints Are Related to Terms And Conditions of Crime Management System and When You report a complaint You Need To be Sure About 
+        the complaint and information you are giving to us
+      </p>
+      <p class="lead py-5">
+       Before you report complaint you agree that you have read our <a href="{% url 'terms'%}"> <span style="color: black">Terms & Conditions</span>  </a> and understanded clearly and Then Proceed With It
+      </p>
+      <button class="btn btn-light"> <a href="{% url 'terms'%}" style="text-decoration: none;"> Learn More</a></button>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light p-sm-5">
+  <div class="form-control shadow p-4">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.as_p }}
+      <p>
+        By Clicking on above Agree Button You Agree to our
+        <a href="{% url 'terms' %}">Terms And Conditions </a>of Using This
+        Website
+      </p>
+      <input class="btn btn-primary" type="submit" value="Submit" />
+    </form>
+  </div>
+</section>
+
+{% endblock %}

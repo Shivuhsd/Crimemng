@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+{% block title %}
+  <title>Profiles | Crime Management</title>
+{% endblock %}
+
+{% block content %}
+<section class="align-items-center px-3 py-3">
+  <div class="container">
+    <form class="d-flex md-5" action="{% url 'search' %}?q={{profile}}" method="GET">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+      <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+{% for profile in profiles %}
+<div class="container text-dark">
+  
+  <div class="row">
+   
+    <div class="col-sm-13">
+      <div class="my-4" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+       
+        <div class="row">
+          <div class="col-md">
+            <img src="{{ profile.image.url }}" alt="" class="card-img" style="width: 100%; height: 12rem;">
+          </div>
+        
+          <div class="col-md-3">
+            <div class="card-body">
+              <h5 class="card-title">#ID: 100{{ profile.id }} <br> Name: {{ profile.firstname }}</h5>
+              <h4 class="card-text">E-Mail: <span class="text-primary">{{profile.email}}</span></h4>
+              <h5>Case-Status: 'To Be Added'</h5>
+              
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card-body">
+              <h5>Phone: {{profile.phone}}</h5>
+              <h5 class="card-title">Address:</h5>
+              <p class="card-text">{{profile.address}}</p>
+              <a href="{% url 'profile' profile.id %}" class="btn btn-primary">Open Profile</a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card-body">
+              <a href="{% url 'update_form' profile.id %}" class="btn btn-warning my-1 px-4">Edit</a><br>
+              <a href="{% url 'delete_profile' profile.id%}" class="btn btn-danger">Delete</a></button><br>
+              <a href="{% url 'pdf' profile.id %}" class="btn btn-primary my-1 px-2.4">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    
+      
+    
+    
+  </div>
+  
+  
+  </div>
+  
+</div>
+{%endfor%}
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'staffdashboard.html' %} {% load static %} {% block dash %}{% block page %}Files Uploaded{% endblock %}
+    <div class="container">
+        <div class="bg-white">
+            <div class="p-3">
+                <div class="h1 text-center">
+                    Complaint
+                </div>
+        
+                <div class="div">
+                    <h3> <span style="color: blue">#ID:</span>  {{form.id}}</h3>
+                    <br><br>
+                    <h4><span style="color: blue">FirstName:</span> {{form.firstname}}</h4><br>
+                    <h4><span style="color: blue">LastName:</span>  {{form.lastname}}</h4><br>
+                    <h4><span style="color: blue">Place:</span> {{form.place}}</h4><br>
+                    <h4><span style="color: blue">Phone:</span> {{form.phone}}</h4>
+                    <br>
+                    <h4><span style="color: blue">E-Mail:</span> {{form.email}}</h4><br>
+                    <h4><span style="color: blue">Pincode:</span> {{form.pincode}}</h4><br>
+                    <h4><span style="color: blue">Address:</span> {{form.address}}</h4><br>
+                    <h4><span style="color: blue">Description:</span> <br>  {{form.description}}</h4><br>
+                </div>
+                <div class="pt-5">
+                    <h3 style="color: blue">Photo: </h3>
+                    {% if form.photo %}
+                    <img class="img-fluid shadow p-3" src="{{form.photo.url}}" alt="" width="200px">
+                    
+                    {% else %}
+                    <h4>There Is No Image</h4>
+                    {% endif %}
+                </div>
+                
+
+                <div class="pt-5">
+                    <h3 style="color: blue">Document/File: </h3>
+                    {% if form.file %}
+                    <h4><a href="{{form.file.url}}">{{form.file}}</a><h4>
+                    
+                    {% else %}
+                    <h4>  There Is No File/Document</h4>
+                    {% endif %}
+                </div>
+                <div class="pt-4">
+                    
+                <button class="btn btn-primary"> <a href="{% url 'replycomplaint' form.id %}" style="color: white"> Reply</a></button>
+
+
+                </div>
+     
+            </div>
+        </div>
+    </div>
+{% endblock %}

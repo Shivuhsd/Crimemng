@@ -1,0 +1,48 @@
+{% extends 'staffdashboard.html' %} {% load static %} {% block dash %}
+<!---Jai -->
+{% block page %}Staff Profile{% endblock %}
+
+<div class="row">
+  <div class="shadow col-md bg-white m-sm-3" style="height: 60%">
+    <div class="container text-center p-4">
+      {% if request.user.userprofile.profile_pic %}
+      <img
+        src="{{request.user.userprofile.profile_pic.url}}"
+        alt="..."
+        class="rounded-circle"
+        width="250px"
+      />
+
+      {% else %}
+      <img
+        src="{% static 'image/014.svg' %}"
+        alt=""
+        width="250px;"
+        class="rounded-circle"
+      />
+
+      {% endif %}
+
+      <h2 class="mt-2">
+        {{request.user.first_name}} {{request.user.last_name}}
+      </h2>
+      <h4></h4>
+      <i class="bi bi-twitter"></i>
+      <i class="bi bi-facebook mx-2"></i>
+      <i class="bi bi-github"></i>
+    </div>
+  </div>
+  <div class="shadow col-md-7 bg-white m-sm-3 mt-3">
+    <div class="container">
+      <h3 class="mt-2">Edit User</h3>
+      <hr />
+      <div class="form-control my-3">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %} {{form.as_p}}
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

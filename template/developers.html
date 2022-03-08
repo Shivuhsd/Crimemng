@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'image/016.svg'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Developers | Crime Management System</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Developers <span><a href="{% url 'index'%}" style="text-decoration: none;" class="m2-5"><button class="btn btn-primary">Home</button></a></span>
+        </div>
+      </nav>
+      <div class="container mt-5 shadow">
+          <div class="row p-3">
+              <div class="col-md">
+                  <img class="img-fluid" src="{% static 'image/0124.svg'%}" alt="">
+              </div>
+              <div class="col-md mt-4">
+                  <div class="h1 text-center">Welcome Developers</div>
+                  <div class="h4 text-center my-3">This Website is a Opensource Project So We Welcome You to Explore, Test and Contribute to Our Project</div>
+                  <div class="h4 text-center my-5">The Source-Code Is Available on Github</div>
+                  <div class="btn btn-primary d-flex justify-content-center mx-5 my-5"><i class="bi bi-github mx-1"></i><a href="" style="text-decoration: none; color: white;"> Git hub</a> </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="container my-5">
+          <div class="h1">About This Web Application</div>
+          <div class="h5">Front-end</div>
+          <div class="p">In Front-end We Are Using Vanilla HTML and bootstrap 5 and JavaScript and HTMl Gives a Skeleton Structure and Using bootstrap 5 a powerfull framework for CSS We Can Create some beautiful, Responsive, Mobile First layout design and Bootstrap 5 also provides some prebuilt componets out of box</div>
+          <a href="https://getbootstrap.com/" target="_blank"><button class="btn btn-primary mt-4">Know More</button></a>
+          
+          <div class="h5 mt-5 text-dark">
+              Backend
+          </div>
+          <div class="p">In Backend we are using Python is a general purpose, interpreted, object oriented high level programmin language which follows the rule write less and create more
+        We are using a popular and powerfull python framework called Django to create web application You can learn more about Django on Offcial Documentation</div>
+         <a href="https://www.djangoproject.com/"><button class="btn btn-primary mt-4">Know More</button></a>
+      </div>
+      <div class="container my-5">
+          
+        <div class="text-dark h5">
+            <span class="h4 text-dark">How to Use the Source-Code</span>  <br> <br>
+            1. Download The Zip File From Github <br><br>
+            2. Extract The Zip File <br><br>
+            3. Move the Folder Content to Your Desired Folder <br><br>
+            4. Install Python from official Website <br><br>
+            4. Open Terminal <br><br>
+            5. Run These Commands <br><br>
+            6. <code>pip install -r requirements.txt <br>pip manage.py runserver</code> <br><br>
+            7. Open Browser and open your <code>localhost:port</code>
+        </div>
+
+      </div>
+
+      <div class="container my-5 shadow p-4">
+          <div class="h2">Any Problem Contact Us:</div>
+          <form action="" method="POST" class="form-control">
+              {% csrf_token %}
+              {{form.as_p}}
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <div class="bg-primary text-center py-4">
+          <div class="h4 text-white">Developers | Crime Management System</div>
+      </div>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'staffdashboard.html' %} 
+{% load static %}{% block dash %} 
+{% block page %}Search{% endblock %}
+<section class="align-items-center px-3 py-3">
+    <div class="container">
+      <form class="d-flex md-5" action="{% url 'staffsearch' %}?q={{profile}}" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </section>
+  {% if number1 == 0 %}
+  <div class="text-center mt-5">
+    <img src="{% static 'image/021.svg' %}" alt="" width="300px;">
+    <h1 class="text-dark mt-4" style="color: rgb(82, 82, 255);">There is Nothing To Search...!</h1>
+  </div>
+
+  {% else %}                                                                                                                                                                        
+  {% for profile in profiles %}
+  
+  <div class="container text-dark">
+    
+    <div class="row">
+     
+      <div class="col-sm-13">
+        <div class="my-4" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+         
+          <div class="row">
+            <div class="col-md">
+              {% if profile.image %}
+              <img src="{{ profile.image.url }}" alt="" class="card-img" style="width: 100%; height: auto;">
+              {% else %}
+              <p>None</p>
+              {% endif %}
+            </div>
+          
+            <div class="col-md-3">
+              <div class="card-body">
+                <h5 class="card-title">#ID: {{ profile.id }} <br> Name: {{ profile.firstname }}</h5>
+                <h6 class="card-text">E-Mail: <span class="text-primary">{{profile.email}}</span></h6>
+                <h6>Created By: @{{profile.user}}</h6>
+            
+                
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card-body">
+                <h5>Phone: {{profile.phone}} <br> Address: <br> {{profile.address}}</h5>
+             
+                <a href="{% url 'staffviewprofile' profile.id %}" class="btn btn-primary">Open Profile</a>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="card-body mt-3">
+                <a href="{% url 'staffedit_profile' profile.id %}" class="btn btn-warning my-1 px-4">Edit</a><br>
+                <a href="{% url 'delete_profile' profile.id%}" class="btn btn-danger">Delete</a></button><br>
+                <a href="{% url 'pdf' profile.id %}" class="btn btn-primary my-1 px-2.4">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      {%endfor%}
+      {% endif %}
+{% endblock %}

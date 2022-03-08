@@ -1,0 +1,10 @@
+{% extends 'staffdashboard.html' %} {% block dash %} {% block page %}Add
+Profile{% endblock %}
+<div class="form-control mt-4">
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+</div>
+
+{% endblock %}

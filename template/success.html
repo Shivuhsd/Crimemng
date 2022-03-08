@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<title>Reset Succesfully | Crime Management</title>
+
+<section class="text-center m-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Reset Succesfull
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Your Password Has Been Changed Succesfully</h5>
+              <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+            </div>
+          </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

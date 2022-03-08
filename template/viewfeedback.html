@@ -1,0 +1,22 @@
+{% extends 'staffdashboard.html' %} {% load static %} {% block dash %}{% block page %}Feedback{% endblock %}
+<div class="container mt-5 shadow p-4 bg-white">
+    <div class="title">
+        <h3>Name:</h3>
+        <h3  style="color: rgb(81, 81, 255);">{{form.name}}</h3>
+
+        <br><br>
+        <h3 >E-Mail:</h3>
+        <h3  style="color: rgb(81, 81, 255);">{{form.email}}</a></h3>
+        <br><br>
+        <h3>Message:</h3>
+        <h3  style="color: rgb(81, 81, 255);">{{form.message}}</h3>
+        <br><br>
+        <h3>Submitted On:</h3>
+        <h3  style="color: rgb(81, 81, 255);">{{form.submit}}</h3>
+        <br><br>
+        <h3>Rating</h3>
+        <h3 style="color: rgb(81, 81, 255);"><span><i class="bi bi-star pe-3"></i></span>{{form.rating}}</h3>
+
+    </div>
+</div>
+{% endblock %}

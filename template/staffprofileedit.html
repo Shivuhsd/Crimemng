@@ -1,0 +1,25 @@
+{% extends 'staffdashboard.html' %} {% block dash %}
+{% block page %}Edit Profile{% endblock %}
+<section class="p-3 align-items center">
+ 
+    
+          <div class="form-control shadow px-lg-5 py-5 bg-light col-md">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Update" class="btn btn-primary">
+                <a href="{% url 'evi' pro.id%}" class="mx-5"><button class="btn btn-primary">Add Evidence</button></a>
+            </form>
+             
+              
+              {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          </div>
+     
+ 
+  </section> {% endblock %}

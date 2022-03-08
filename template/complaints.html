@@ -1,0 +1,57 @@
+{% extends 'index.html' %} {% block title %}
+<title>Complaints | Crime Management</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="container  bg-white">
+    <div class="test-start my-5 text-dark" >
+      <div class="h1">Complaints</div>
+  
+      <div>
+        <h4>
+          ID: {{user.id}} <br />
+          {{user.username}} <br />
+          {{user.email}}
+        </h4>
+      </div>
+    </div>
+  
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#id</th>
+          <th scope="col">First</th>
+          <th scope="col">Submit</th>
+          <th scope="col">Download</th>
+        </tr>
+      </thead>
+      {%for compa in compla%}
+      <tbody>
+        {% if user.id == compa.user.id %}
+        <tr>
+          <th scope="row">{{compa.id}}</th>
+          <td>{{compa.firstname}}</td>
+          <td>{{compa.created}}</td>
+          <td>
+            <button class="btn btn-primary text-white">
+              <a
+                href="{% url 'complaintpdf' compa.id%}"
+                class="text-white text-decoration-none"
+                >Download</a
+              >
+            </button>
+          </td>
+        </tr>
+        {% endif %} {% endfor %}
+      </tbody>
+    </table>
+  
+    <button class="btn btn-primary text-center">
+      <a href="{% url 'complaint' %}" class="text-white text-decoration-none"
+        >Complaint</a
+      >
+    </button>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block footer %} {% endblock%}

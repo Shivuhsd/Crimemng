@@ -1,0 +1,10 @@
+{% extends 'staffdashboard.html' %} {% load static %} {% block dash %}{% block page %}Contacted{% endblock %}
+<div class="container mt-5 shadow p-4 bg-white">
+    <h3 class="my-4">To: {{form.email}}</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{re.as_p}}
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+{% endblock %}

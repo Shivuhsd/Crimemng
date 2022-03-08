@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <div class="col-md" class="tone" style="color: blue; font-size: 20px">
+        <h1 align="center">Crime Management System</h1>
+      </div>
+      <hr />
+    </nav>
+    <div>
+      <div>
+        <h1>Case ID: {{profile.id}}</h1>
+        <h1>Defender Information:</h1>
+        <br /><br />
+        <img src="{{profile.image.url}}" alt="" height="200px" />
+        <h1>First Name: {{profile.firstname}}</h1>
+        <h1>Last Name: {{profile.lastname}}</h1>
+        <h1>Email: {{profile.email}}</h1>
+        <h1>Phone Number: {{profile.phone}}</h1>
+        <h1>Pincode: {{profile.pincode}}</h1>
+        <h1>Address: {{profile.address}}</h1>
+      </div>
+      <br />
+      <hr />
+      <div>
+        <h1>Accuser Information:</h1>
+        <br /><br />
+        <img src="{{profile.image_accuser.url}}" alt="" height="200px" />
+        <h1>First Name: {{profile.accuser_firstname}}</h1>
+        <h1>Last Name: {{profile.accuser_lastname}}</h1>
+        <h1>Email: {{profile.accuser_email}}</h1>
+        <h1>Phone: {{profile.accuser_phone}}</h1>
+        <h1>Address: {{profile.accuser_address}}</h1>
+      </div>
+
+      <hr />
+      <br />
+      <div>
+        <h1>Description:</h1>
+        <h1>{{profile.description|linebreaks}}</h1>
+      </div>
+    </div>
+    <hr />
+    <h1>Created: {{profile.created_on}}</h1>
+    <h1>Last Edited: {{profile.last_edit}}</h1>
+    <h3 style="margin-top: 30px">Crime Management System &copy; 2021-22</h3>
+  </body>
+</html>

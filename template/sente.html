@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<title>Activation E-Mail Sent | Crime Management</title>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container mt-5">
+        <div class="card text-center m-3">
+            <div class="card-header">
+              E-Mail Sent
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Activate Your Account</h5>
+              <p class="card-text">A Link To Activate Your Account Has Been Sent to Your E-Mail</p>
+              <a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+            </div>
+            <div class="card-footer text-muted">
+              Thank You For Joining Us
+            </div>
+          </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

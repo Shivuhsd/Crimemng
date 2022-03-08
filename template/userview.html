@@ -1,0 +1,98 @@
+{% extends 'index.html' %} {% load static %} {% block title %}
+<title>Profile | Crime Management</title>
+{% endblock %} {% block content %}
+
+<div class="section text-center">
+  <div class="h1 my-5">Case Description</div>
+</div>
+
+<div class="section">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Accuser</div>
+          <div class="card-body">
+            <img
+              src="{{profile.image_accuser.url}}"
+              alt=""
+              width="200px"
+              height="250px"
+            />
+            <h5 class="mt-5">
+              <span class="text-primary">Firstname: </span
+              >{{profile.accuser_firstname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Lastname: </span
+              >{{profile.accuser_lastname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Phone Number: </span
+              >{{profile.accuser_phone}}
+            </h5>
+            <h5>
+              <span class="text-primary">E-mail: </span
+              >{{profile.accuser_email}}
+            </h5>
+            <h5>
+              <span class="text-primary">Adress: </span
+              >{{profile.accuser_address}}
+            </h5>
+          </div>
+          <div class="card-footer text-muted">
+            Created On: {{profile.created_on}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Defender</div>
+          <div class="card-body">
+            <img
+              src="{{profile.image.url}}"
+              alt=""
+              width="200px"
+              height="250px"
+            />
+            <h5 class="mt-5">
+              <span class="text-primary">Firstname: </span>{{profile.firstname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Lastname: </span>{{profile.lastname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Phone Number: </span>{{profile.phone}}
+            </h5>
+            <h5><span class="text-primary">E-mail: </span>{{profile.email}}</h5>
+            <h5>
+              <span class="text-primary">Adress: </span>{{profile.address}}
+            </h5>
+          </div>
+          <div class="card-footer text-muted">
+            Last Updated On: {{profile.last_edit}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container text-dark py-5">
+    <div class="card">
+      <h5 class="card-header">Description</h5>
+      <div class="card-body">
+        <h5 class="card-title py-3">
+          Statement Given By Both Affender And Defender:
+        </h5>
+        <p class="card-text">{{profile.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h3>The Above Information is Given By The Both Affender And Defender</h3>
+</div>
+{% endblock %} {% block footer %} {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Edit User | Crime Management</title>
+{% endblock %}
+
+{% block content %}
+<section class="p-3 align-items center">
+    <div class="row">
+      <div class="container col-md">
+  
+      </div>
+  
+          <div class="shadow col-md p-5 my-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Update" class="btn btn-primary">
+            </form>
+             
+              
+              {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+      <div class="container col-md">
+  
+      </div>
+    </div>
+      
+  </section>
+{% endblock %}

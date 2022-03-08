@@ -1,0 +1,35 @@
+{% extends 'staffdashboard.html' %} {% block dash %}
+{% block page %}Complaints{% endblock %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">First</th>
+      <th scope="col">Submit</th>
+      <th scope="col">Download</th>
+    </tr>
+  </thead>
+  {%for compa in compla%}
+  <tbody>
+    
+    <tr>
+      <th scope="row"><a href="{% url 'staffviewcomplaint' compa.id%}">{{compa.id}}</a></th>
+      <td>{{compa.firstname}}</td>
+      <td>{{compa.created}}</td>
+      <td>
+        <button class="btn btn-primary text-white">
+          <a
+            href="{% url 'complaintpdf' compa.id%}"
+            class="text-white text-decoration-none"
+            >Download</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    
+  </div>
+</div>
+{% endblock %}

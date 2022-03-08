@@ -1,0 +1,84 @@
+{% extends 'index.html' %}{% load static %}{% block title %}
+<title>Result | Crime Management</title>
+{% endblock %} {% block content %} {% if number1 == 0 %}
+<div class="text-center mt-5 pt-5">
+  <img src="{% static 'image/021.svg' %}" alt="" width="300px;" />
+  <h1 class="text-dark my-4" style="color: rgb(82, 82, 255)">
+    There is Nothing To Search...!
+  </h1>
+  <h3>or</h3>
+  <h1 class="text-dark my-4" style="color: rgb(82, 82, 255)">
+    You Have Entered Wrong ID
+  </h1>
+  <a href="{% url 'usersearch' %}"
+    ><button class="btn btn-primary mb-5">Serach Again</button></a
+  >
+</div>
+
+{% else %} {% for profile in profiles %}
+<div class="container">
+  <div class="h1 text-center my-3">Results For Your Search</div>
+<div class="m-3 text-dark">
+  <div class="row">
+    <div class="col-sm-13">
+      <div class="my-4" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)">
+        <div class="row">
+          <div class="col-md">
+            <img
+              src="{{ profile.image.url }}"
+              alt=""
+              class="card-img"
+              style="width: 100%; height: auto"
+            />
+          </div>
+
+          <div class="col-md-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                #ID: 100{{ profile.id }} <br />
+                Name: {{ profile.firstname }}
+              </h5>
+              <h6 class="card-text">
+                E-Mail: <span class="text-primary">{{profile.email}}</span>
+              </h6>
+              <h6>Created By: @{{profile.user}}</h6>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card-body mt-3">
+              <h5>
+                Phone: {{profile.phone}} <br />
+                Address: <br />
+                {{profile.address}}
+              </h5>
+
+              <a href="{% url 'userview' profile.id %}" class="btn btn-primary mt-3"
+                >Open Profile</a
+              >
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card-body mt-2">
+              <a
+                href="{% url 'pdf' profile.id %}"
+                class="btn btn-primary my-1 px-2.4"
+                >Download</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="{% url 'usersearch'%}"><button class="btn btn-dark">Search Again</button></a>
+  <div class="container my-5 text-center">
+  Crime Management System
+  </div>
+</div>
+
+</div>
+
+{%endfor%} {% endif %} {% endblock %}
+
+
+

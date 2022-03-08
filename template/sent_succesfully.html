@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<title>Sent Succesfully | Crime Management</title>
+
+<section class="text-center m-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+              E-Mail Sent
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">E-Mail Has Sent To Your Registered E-Mail</h5>
+              <p class="card-text">Instruction To Change Your Password Has Been Sent</p>
+              <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+            </div>
+          </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'index.html'%}
+{% load static %}
+
+{% block content %}
+
+<section class="card-group p-3 align-items-center">
+
+    <div class="container d-sm-flex">
+        <div class="container">
+             
+        </div>
+        <div class="container py-5">
+            <div class="card text-center">
+              <div class="card-header">
+                User Information
+              </div>
+              <div class="card-body">
+                <div class="fluid-img">
+                  {% if user.userprofile.profile_pic %}
+                  <img src="{{user.userprofile.profile_pic.url}}" alt="..." class="rounded-circle" width="100px" >
+                  {% else %}
+                  <img src="{% static 'image/014.svg'%}" alt="" class="rounded-circle" width="100px">
+                  {% endif%}
+                  
+                </div>
+                <h5 class="card-title pt-4">Username: {{request.user.username}}</h5>
+                <p class="card-text pt-3"> <b>Firstname: </b>{{request.user.first_name}}</p>
+                <p class="card-text"> <b>Lastname: </b>{{request.user.last_name}}</p>
+                <p class="card-text"> <b>E-mail: </b>{{request.user.email}}</p>
+                <p class="card-text"><b>Address: </b>{{request.user.userprofile.address}}</p>
+                <a href="{% url 'editprofile' %}" class="btn btn-primary">Edit Profile</a>
+              </div>
+              <div class="card-footer text-muted">
+                Date of Joined
+              </div>
+            </div>
+        </div>
+        <div class="container">
+
+        </div>
+    </div>
+        
+    
+  </section>
+{% endblock %}

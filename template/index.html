@@ -1,0 +1,628 @@
+{% load static %}
+
+<!--new-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <style>
+      .errorlist{
+        color: red;
+      }
+
+    
+    </style>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link rel="icon" href="{% static 'image/016.svg' %}" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/index.css'%}" />
+    {% block title %}
+    <title>Home | Crime Management System</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block nav %}
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow text-dark"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="{% static 'image/015.svg' %}"
+            alt=""
+            width="30"
+            height="30"
+            class="d-inline-block align-text-top"
+          />
+          Crime Management
+        </a>
+        {% if user.is_authenticated %}
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'complaint_view' %}"
+                >Complaint</a
+              >
+            </li>
+            {% if request.user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'staff_register' %}"
+                >Staff Register</a
+              >
+            </li>
+            {% endif %}
+
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'contact' %}"
+                >Contact</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'feedback' %}"
+                >Feedback</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'usersearch' %}"
+                >Search</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'developers' %}"
+                >Developers</a
+              >
+            </li>
+            {% if user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'staffdashboard' %}"
+                >Staff Dashboard</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+          <ul class="navbar-nav me-3">
+            <li class="nav-item">
+              <a href="{% url 'userProfile' %}" class="nav-link"
+                >
+                {% if user.userprofile.profile_pic %}<img
+                  src="{{user.userprofile.profile_pic.url}}"
+                  alt=""
+                  class="rounded-circle me-2"
+                  width="30px;"
+                />
+                {% else %}
+                <img src="{% static 'image/014.svg' %}" alt="" class="rounded-circle me-2" width="30px">
+                {%endif%}<span class="text-dark">{{request.user.first_name}}</span></a
+              >
+            </li>
+          </ul>
+          <button class="btn btn-primary">
+            <a href="{%url 'logout' %}" class="text-decoration-none text-light"
+              >Logout</a
+            >
+          </button>
+          {% else %}
+          <button class="btn btn-primary">
+            <a href="{% url 'login' %}" class="text-decoration-none text-light"
+              >Sign-In</a
+            >
+          </button>
+        </div>
+        {% endif %}
+      </div>
+    </nav>
+    {% endblock %} {% block content %}
+
+    <!--Slides-->
+    {% if user.is_authenticated %}
+
+    <div class="section">
+      <div class="container bg-light my-5 shadow">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{% static 'image/03.svg' %}"
+                class="d-block w-100 h-80"
+                alt="..."
+                height="600px"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text-dark">Responsive</h5>
+                <p class="text-primary lead">
+                  Responsive Design lets user to use this Web Application on any device
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{% static 'image/002.svg' %}"
+                class="d-block w-100 h-80"
+                alt="..."
+                height="600px"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text-dark">Accessibility</h5>
+                <p class="text-primary lead">
+                  Accessibility allows people to easily access and understand the application
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{% static 'image/003.svg' %}"
+                class="d-block w-100"
+                alt="..."
+                height="600px"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text-dark">Access From Any Where</h5>
+                <p class="text-primary lead">
+                  Through production ready web application deployed on server any one can access from anywhere
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+    <section class="text-dark p-5 text-center">
+      <div class="container">
+        <div class="">
+          <div class="my-5">
+            <h1>Crime Management System</h1>
+            <p class="mt-3 fs-6">
+             Crime Management System Is A Modern World's Online Crime Reporting and Managing Application
+             Created Keeping in the mind that <br> everyone can get information about their service online efficeintly
+            </p>
+            <button class="btn btn-primary my-sm-5">
+              <a
+                href="{% url 'registerPage' %}"
+                class="text-decoration-none text-white"
+                >Sign-UP</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    <section class="bg-light p-5">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="bg-white shadow">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-phone"></i>
+                </div>
+                <h3 class="card-title">Responsive</h3>
+                <p class="card-text">
+                  This application can work on any device from Smartphone to Desktop Computers
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="bg-white shadow">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-lightning"></i>
+                </div>
+                <h3 class="card-title">Fast</h3>
+                <p class="card-text">
+                  Created Using Best Software In Today's World To Transfer information As Fast As Possible
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="bg-white shadow">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-file-lock-fill"></i>
+                </div>
+                <h3 class="card-title">Secure</h3>
+                <p class="card-text">
+                  Every information Related To You Will be Safe and Protected With Us
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <img src="{% static 'image/012.svg'%}" class="img-fluid" alt="" />
+          </div>
+          <div class="col-md">
+            <h2>Search Your Profile</h2>
+            <p class="lead">
+              Crime Management System let's Public user to search about their Complaints and profiles about their and it lets them to download it and use it 
+            </p>
+            <p class="lead">
+              Crime Management System lets user to search through ID of case or profile
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <h2>Created In Django</h2>
+            <p class="lead">
+              Django is a powerful Web Framework which lets us to create advanced and production ready web application with minimum margin of <br>Error and let's us to build the secure web application
+            </p>
+            <p class="lead">
+              
+            </p>
+          </div>
+
+          <div class="col-md">
+            <img
+              src="{% static 'image/019.svg'%}"
+              style="width: auto"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <img src="{% static 'image/013.png'%}" class="img-fluid" alt="" />
+          </div>
+          <div class="col-md">
+            <h2>Powered By Python</h2>
+            <p class="lead">
+              Python is  General Purpose, Interpreted, Object Oriented, High Level Powerfull Programming Language with a feature of write less and create more
+            </p>
+            <p class="lead">
+              Python has many framework to create webapplication django is one of the framework to create web application
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Developers card-->
+
+    <section class="bg-light p-5">
+      <div class="container">
+        <h3 class="text-center mb-5">Developers Team</h3>
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="shadow bg-white">
+              <div class="card-body text-center">
+                <div class="h1 mb-3 card-img fluid-img">
+                  <img src="{% static 'image/014.svg'%}" alt="" width="100px" />
+                </div>
+                <h3 class="card-title">Shivakumar</h3>
+                <p class="card-text">
+                  I am Intrested in Computers and how they work, and also i like web development
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a><br />
+                <div class="mt-3">
+                  <a href="https://www.github.com" class="text-dark"
+                    ><i class="bi bi-github mx-2 my-3"></i
+                  ></a>
+                  <i class="bi bi-facebook mx-2 my-3"></i>
+                  <i class="bi bi-instagram mx-2 my-3"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="shadow bg-white">
+              <div class="card-body text-center">
+                <div class="h1 mb-3 card-img fluid-img">
+                  <img src="{% static 'image/014.svg'%}" alt="" width="100px" />
+                </div>
+                <h3 class="card-title">Sangameshwar</h3>
+                <p class="card-text">
+                  I am Intrested in Front end Development and many more
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+                <div class="mt-3">
+                  <i class="bi bi-github mx-2 my-3"></i>
+                  <i class="bi bi-facebook mx-2 my-3"></i>
+                  <i class="bi bi-instagram mx-2 my-3"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="shadow bg-white">
+              <div class="card-body text-center">
+                <div class="h1 mb-3 card-img fluid-img">
+                  <img src="{% static 'image/014.svg'%}" alt="" width="100px" />
+                </div>
+                <h3 class="card-title">Roshan</h3>
+                <p class="card-text">
+                 I am intrested in C, C++ <br> Many more
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+                <div class="mt-3">
+                  <i class="bi bi-github mx-2 my-3"></i>
+                  <i class="bi bi-facebook mx-2 my-3"></i>
+                  <i class="bi bi-instagram mx-2 my-3"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="shadow bg-white">
+              <div class="card-body text-center">
+                <div class="h1 mb-3 card-img fluid-img">
+                  <img src="{% static 'image/014.svg'%}" alt="" width="100px" />
+                </div>
+                <h3 class="card-title">Yathish</h3>
+                <p class="card-text">
+                  I don't know who is this but i think he is our <br>Team Member
+                </p>
+                <a href="" class="btn btn-primary">Learn More</a>
+                <div class="mt-3">
+                  <i class="bi bi-github mx-2 my-3"></i>
+                  <i class="bi bi-facebook mx-2 my-3"></i>
+                  <i class="bi bi-instagram mx-2 my-3"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Accordium of Questions-->
+
+    <section class="p-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions?</h2>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                How Much Time It Takes For an Reply?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                A Reply Doesn't take to much Time You Will get an reply as fast as our staff see's your complaint or Contact
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                Can We Always Visit This Website?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Yes, You can visit our web site anytime with our 99% Uptime
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Where Can We Contact You?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingThree"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                You can Contact us through the contact form and sharing your problem with our staff and also visit to the address given below with the map location
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Contact form-->
+    <section class="p-5" id="contact">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md">
+            <h2 class="text-center mb-4">Contact Info</h2>
+            <ul class="list-group list-group-flush lead">
+              <li class="list-group-item">
+                <span class="fw-bold">Main Location: Tumkur</span>
+              </li>
+
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Projects Name: Crime Management System
+                </span>
+              </li>
+
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Used Language: Python, Html, Bootstrap</span
+                >
+              </li>
+
+              <li class="list-group-item">
+                <span class="fw-bold"
+                  >Adress: Seshadripuram College, Gangasandra Road, Malekote, Tuda Layout Tumkur</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% endblock %} {% block footer %}
+
+    <footer
+      class="p-5 bg-dark text-white text-center position-relative fixed-bottom"
+    >
+      <div class="container">
+        <p class="lead">Copyright &copy; 2022 Project</p>
+
+        <a href="#" class="position-absolute bottom-0 end-0 p-5">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+
+    {% endblock %}
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/641a65c423.js" crossorigin="anonymous"></script>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1Ijoic2hpdnUxMSIsImEiOiJja3hsd2tlcDExZzRqMnJwZXdoeGh0a2w4In0.8Zl8puOCJSkqF74qEUuj1Q";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [77.083083, 13.320583],
+        zoom: 16,
+      });
+    </script>
+  </body>
+</html>

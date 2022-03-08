@@ -1,0 +1,185 @@
+{% extends 'staffdashboard.html' %} {% block dash %} {% block page %}View
+Profile{% endblock %}
+
+<div class="section text-center">
+  <div class="h1 my-5">Case Description</div>
+</div>
+
+<div class="section">
+  <div class="container py-5">
+    <div>
+      <h3>Created By: <span style="color: blue;">{{profile.user}}</span>  On  Date: <span style="color: blue;">{{profile.created_on}} </span> </h3>
+      <br>
+      <h3>Last Updated On: <span style="color: blue;">{{profile.last_edit}}</span></h3>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Accuser</div>
+          <div class="card-body">
+            <img
+              src="{{profile.image_accuser.url}}"
+              alt=""
+              width="200px"
+              height="250px"
+            />
+            <h5 class="mt-5">
+              <span class="text-primary">Firstname: </span
+              >{{profile.accuser_firstname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Phone Number: </span
+              >{{profile.accuser_phone}}
+            </h5>
+            <h5>
+              <span class="text-primary">E-mail: </span
+              >{{profile.accuser_email}}
+            </h5>
+            <h5>
+              <span class="text-primary">Adress: </span
+              >{{profile.accuser_address}}
+            </h5>
+          
+          </div>
+          <div class="card-footer text-muted"><span>Created On: </span>{{profile.created_on}}</div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Defender</div>
+          <div class="card-body">
+            <img
+              src="{{profile.image.url}}"
+              alt=""
+              width="200px"
+              height="250px"
+            />
+            <h5 class="mt-5">
+              <span class="text-primary">Firstname: </span>{{profile.firstname}}
+            </h5>
+            <h5>
+              <span class="text-primary">Phone Number: </span>{{profile.phone}}
+            </h5>
+            <h5><span class="text-primary">E-mail: </span>{{profile.email}}</h5>
+            <h5>
+              <span class="text-primary">Adress: </span>{{profile.address}}
+            </h5>
+           
+          </div>
+          <div class="card-footer text-muted"><span>Created On: </span>{{profile.created_on}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container text-dark py-5">
+    <div class="card">
+      <h5 class="card-header">Description</h5>
+      <div class="card-body">
+        <h5 class="card-title py-3">
+          Statement Given By Both Affender And Defender:
+        </h5>
+        <p class="card-text">{{profile.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container text-dark py-5">
+    <div class="card">
+      <h5 class="card-header">FIR</h5>
+      <div class="card-body">
+       
+        FIR :{% if profile.fir %}
+          <a href="{{profile.fir.url}}"
+            >Case ID:{{profile.id}}</a
+          >
+          {% else %}
+          <p style="color: blue" >None</p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="section">
+  <div class="container text-dark py-5">
+    <div class="card">
+      <h5 class="card-header">Evidences</h5>
+      <div class="card-body">
+        <h5 class="card-title py-3"> <b>Evidences Will Showen Here</b> </h5>
+
+        <p class="card-text">
+          Evidence_Documents: <br>{% for evids in evid %}{% if evids.evidence_video %}
+          <a href="{{evids.evidence_video.url}}"
+            >{{evids.evidence_video}}</a
+          > <br>
+          
+          {% else %}
+          <p style="color: blue" >None</p>
+          {% endif %}
+          {% endfor %}
+         
+          
+        </p>
+        <p class="card-text">
+          Evidence_Audio: <br>{% for evids in evida %}{% if evids.evidence_audio %}
+          <a href="{{evids.evidence_audio.url}}"
+            >{{evids.evidence_audio}}</a
+          >  <br>
+          {% else %}
+          <p style="color: blue" >None</p>
+          {% endif %}
+          {% endfor %}
+        
+          
+        </p>
+        <p class="card-text">
+          Evidence Documents: <br>{% for evids in evidd %}{% if evids.evidence_doc %}
+          <a href="{{evids.evidence_doc.url}}"
+            >{{evids.evidence_doc}}</a
+          ><br>
+          {% else %}
+          <p  style="color: blue" >None</p>
+          
+          {% endif %}
+          {% endfor %}
+          
+        </p>
+
+        <p class="card-text">
+          Evidence Images: <br>{% for evids in evidi %}{% if evids.evidence_img %}
+          <a href="{{evids.evidence_img.url}}"
+            >{{evids.evidence_img}}</a
+          > <br>
+          {% else %}
+          <p  style="color: blue" >None</p>
+          {% endif %}
+          {% endfor %}
+         
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container py-5">
+    <button class="btn btn-primary text-light">
+      <a
+        href="{% url 'pdf' profile.id %}"
+        class="text-light text-decoration-none"
+        >Download</a
+      >
+    </button>
+  </div>
+</div>
+
+{% endblock %}

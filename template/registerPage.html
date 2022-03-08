@@ -1,0 +1,32 @@
+{% extends 'index.html' %} {% block content %}
+<style>
+  .errorlist {
+    color: red;
+  }
+</style>
+<section class="p-3 align-items center">
+  <div class="row">
+    <div class="container col-md"></div>
+
+    <div class="shadow col-md p-5">
+      <form action="" method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <input type="submit" value="Sign-Up" class="btn btn-primary" />
+      </form>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{% url 'login' %}"
+        >Already Registered? Log-In</a
+      >
+      {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    </div>
+
+    <div class="container col-md"></div>
+  </div>
+</section>
+{% endblock %}
